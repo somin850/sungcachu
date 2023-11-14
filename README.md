@@ -20,6 +20,10 @@
 학교 근처의 카페들을 한 눈에 보기 쉽게 정리하고 선택이 오래 걸리는 학우들에게 도움이 되는 어플을 제작하는 것
 
 ## 📱구현 예상 화면
+![001](https://github.com/somin850/sungcachu/assets/132176662/55fdddfd-d158-49c7-925e-bb25ffd7027a)
+![002](https://github.com/somin850/sungcachu/assets/132176662/24b4568b-f98e-4f68-a111-594b3cc12849)
+![003](https://github.com/somin850/sungcachu/assets/132176662/eb5b5099-517a-468e-bbdf-675f03c9fd57)
+![004](https://github.com/somin850/sungcachu/assets/132176662/26cf4bca-a3ab-4be0-a6f3-e180566a4e15)
 
 
 
