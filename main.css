@@ -1,0 +1,54 @@
+img{
+    width : 200px;
+    height : 200px;
+    object-fit : cover;
+}
+
+h2{
+    line-height: 1.6;
+}
+.p_main {
+  line-height: 0.5;
+}
+
+nav {
+    margin-bottom: 30px;
+}
+
+.navbar-brand {
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:active {
+    color: #4B088A;
+}
+
+hr{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.row [class*="col"] {
+    margin-bottom: 10px;
+}
+
+.custom-btn {
+    background-color: #D6E4F9;
+}
+
+.left-aligned-image {
+    float: left;
+    margin-right: 5px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
