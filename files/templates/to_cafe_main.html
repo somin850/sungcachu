@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.rtl.min.css" integrity="sha384-PRrgQVJ8NNHGieOA1grGdCTIt4h21CzJs6SnWH4YMQ6G5F5+IEzOHz67L4SQaF0o" crossorigin="anonymous">
+    {% load static %}
+
+
+    <link rel="stylesheet" href="{% static 'css/to_cafe_main.css' %}" />
+    <script src="{% static '/js/to_main_cafe.js' %}"></script>
+    <title>성카추 - 브랜드 상세 페이지 </title>
+  </head>
+
+  <body>
+  <nav class="navbar navbar-expand-lg py-4" style="background-color: #AB7FDF;">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#"  onclick="butt_to_main_cafe()">성카추</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a class="nav-link" href="#"  onclick="butt_to_main_cafe()"> 메인 화면 </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active"  aria-current="page" href="#"> 프랜차이즈 종류 </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#"> 음료 종류 </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">추천</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <main>
+        <article>
+            <div class="container text-center">
+  <div class="row">
+    <div class="col">
+        <img src="{{ franchise_object.f_image }}" class="rounded float-start left-aligned-image" alt="(로고)" >
+    </div>
+
+    <div class="col text-end">
+        <h1>{{ franchise_object.f_name }}</h1>
+        <p class="p_main"> 운영시간: {{ franchise_object.open_time }} ~ {{ franchise_object.close_time }} </p>
+        <p class="p_main">{{ franchise_object.f_location}} </p>
+        <button type="button" class="btn custom-btn " onclick="window.open('{{ franchise_object.naver_place }}')"  > 정문으로부터 약 {{ franchise_object.dist }}m</button>
+    </div>
+  </div>
+            </div>
+        </article>
+
+
+<hr class="border border-color: #9F81F7 border-2 opacity-70">
+
+<div class="container text-center">
+  <div class="row">
+      {% for menu in menus %}
+        {% if menu.f_name.f_name == franchise_object.f_name %}
+          <div class="col">
+             <a href="#" onclick="butt_to_feature(
+                 '{{ menu.f_name.f_name }}',
+                 '{{ menu.m_name }}',
+                 '{{ menu.drink_size }}',
+                 '{{ menu.price }}',
+                 '{{  menu.drink_type.drink_type }}',
+                 '{{ menu.allergy }}',
+                 '{{ menu.caffeine }}',
+                 '{{ menu.m_image }}')">
+            <button type="button" class="btn btn-outline">
+              <img src="{{ menu.m_image }}" class="rounded mx-auto d-block" alt="{{ menu.m_name }}">
+            </button>
+                  </a>
+            <p>{{ menu.m_name }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+  </div>
+</div>
+
+
+
+    </main>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
