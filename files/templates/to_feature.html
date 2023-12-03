@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+
+      {% load static %}
+      <script src="{% static '/js/to_main_cafe.js' %}"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.rtl.min.css" integrity="sha384-PRrgQVJ8NNHGieOA1grGdCTIt4h21CzJs6SnWH4YMQ6G5F5+IEzOHz67L4SQaF0o" crossorigin="anonymous">
+      <link rel="stylesheet" href="main.css" />
+      <title>성카추 - 브랜드 상세 페이지 </title>
+      <style>
+          img{
+          width : 200px;
+          height : 200px;
+          object-fit : cover;
+      }
+
+      h2{
+          line-height: 1.6;
+      }
+      .p_main {
+          line-height: 0.5;
+      }
+
+      nav {
+          margin-bottom: 30px;
+      }
+
+      .navbar-brand {
+          font-size: 30px;
+          color: white;
+          font-weight: bold;
+      }
+
+      .navbar-nav .nav-link {
+          font-size: 20px;
+          color: white;
+          font-weight: bold;
+      }
+
+      .navbar-nav .nav-link.active,
+      .navbar-nav .nav-link:active {
+          color: #4B088A;
+      }
+
+      hr{
+          margin-top: 50px;
+          margin-bottom: 50px;
+      }
+
+      .row [class*="col"] {
+          margin-bottom: 10px;
+      }
+
+      .left-aligned-image {
+          float: left;
+          margin-right: 5px;
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+      }</style>
+
+  </head>
+
+  <body>
+  <nav class="navbar navbar-expand-lg py-4" style="background-color: #AB7FDF;">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#"  onclick="butt_to_main_cafe()">성카추</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a class="nav-link" href="#"  onclick="butt_to_main_cafe()"> 메인 화면 </a>
+                  </li>
+                  <li class="nav-item">
+                   <a class="nav-link" href="#"
+                      {% for franchise in franchises %}
+                      {% if franchise.f_name == menu_object.f_name %}
+                      onclick="butt_to_cafe_main(
+                 '{{ franchise.f_name }}',
+                 '{{ franchise.f_location }}',
+                 '{{ franchise.open_time }}',
+                 '{{ franchise.close_time }}',
+                 '{{ franchise.f_image }}',
+                 '{{ franchise.dist }}',
+                 '{{ franchise.naver_place }}')"
+                 {% endif %}{% endfor %}}> 프랜차이즈 종류
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active"  aria-current="page" href="#"> 음료 종류 </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">추천</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <main>
+        <article>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ menu_object.m_image }}" class="rounded float-start left-aligned-image" alt="(음료 이미지)">
+            </div>
+            <div class="col-md-6 text-end">
+                <h2>{{ menu_object.m_name }}</h2>
+                <p> - {{ menu_object.f_name }}</p>
+            </div>
+        </div>
+    </div>
+</article>
+
+       {% for recommend in recommends %}
+    {% if menu_object.drink_type == recommend.drink_type %}
+          <div>
+            <b>성분</b>
+            <hr class="border border-color: #9F81F7 border-2 opacity-70" style="margin: 10px">
+            <div class="col text-end">
+                    {% if menu_object.allergy %}
+                     <p class="p_main"> &ensp; ❗ {{ menu_object.allergy }} 성분에 주의하세요. </p>
+                    {% endif %}
+
+                 <p class="p_main">
+                    {% if menu_object.caffeine == "없음" %}
+                          &ensp;❌ 카페인 없음
+                    {% else %}
+                          &ensp;⭕ 카페인 있음
+                    {% endif %}
+                </p>
+                   <p class="p_main">
+                    {% if "HOT" in menu_object.drink_type %}
+                          &ensp;🔥 따뜻한 음료
+                    {% else %}
+                          &ensp;❄ 시원한 음료
+                    {% endif %}
+                </p>
+
+            </div>
+            <hr class="border border-color: #9F81F7 border-2 opacity-70" style="margin: 10px;margin-bottom: 15px;clear: both">
+        </div>
+
+        <div>
+            <b>추천 시간</b>
+            <hr class="border border-color: #9F81F7 border-2 opacity-70" style="margin: 10px">
+            <div class="col text-end">
+                <p class="p_main"> &ensp;⏰ {{ recommend.drink_time }}에 즐겨보세요 </p>
+            </div>
+            <hr class="border border-color: #9F81F7 border-2 opacity-70" style="margin: 10px;margin-bottom: 15px;clear: both">
+        </div>
+
+
+        <div style="clear: both">
+            <b>조합 토핑 & 디저트</b>
+            <hr class="border border-color: #9F81F7 border-2 opacity-70" style="margin: 10px">
+            <div class="col text-end">
+                {% if recommend.topping %}
+                   <p class="p_main"> &ensp;💜 {{ recommend.topping }}을 추가하면 더 맛있게 드실 수 있습니다.</p>
+                {% endif %}
+                <p class="p_main"> &ensp;💜 {{ recommend.dessert }}과 함께 먹는 건 어떨까요? </p>
+            </div>
+            <hr class="border border-color: #9F81F7 border-2 opacity-70" style="margin: 10px;margin-bottom: 15px;clear: both">
+        </div>
+    {% endif %}
+        {% endfor %}
+
+    </main>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
