@@ -8,7 +8,6 @@ function butt_to_cafe_main(
     console.log('거리:', dist);
     console.log('네이버 장소:', naver_place);
 
-    // JSON 형태로 직접 객체를 전달
     const franchiseObject = {
         f_name: f_name,
         f_location: f_location,
@@ -27,7 +26,6 @@ function butt_to_cafe_main(
 function butt_to_feature(
     f_name, m_name, drink_size, price, drink_type, allergy, caffeine, m_image) {
 
-    // JSON 형태로 직접 객체를 전달
     const menuObject = {
         f_name : f_name,
         m_name: m_name,
@@ -42,7 +40,6 @@ function butt_to_feature(
     const menuString = JSON.stringify(menuObject);
     console.log('전달된 메뉴(JSON 형태):', menuString);
 
-    // URL 인코딩하여 메인 카페 페이지로 리디렉션
     window.location.href = '/main_cafe/main_cafe/feature/?menu=' + encodeURIComponent(menuString);
 }
 
