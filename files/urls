@@ -1,0 +1,11 @@
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('', views.to_main_cafe, name='main_cafe'),
+    #path('main_cafe/', views.to_main_cafe, name='main_cafe'),
+    path('main_cafe/cafe_main/', views.to_cafe_main, name='cafe_main'),
+    path('main_cafe/drink/', views.to_drink, name='drink'),
+    path('main_cafe/feature/', views.to_feature, name='feature'),
+]
